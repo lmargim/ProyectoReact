@@ -63,7 +63,7 @@ function ModificarComentario() {
   useEffect(() => {
     async function getComentario() {
       try {
-        let response = await fetch(`${apiUrl}/comentario/${params.idcomentario}`);
+        let response = await fetch(`${apiUrl}/comentario/id/${params.idcomentario}`);
         if (response.ok) {
           let data = await response.json();
           console.log("Comentario cargado:", data.datos);

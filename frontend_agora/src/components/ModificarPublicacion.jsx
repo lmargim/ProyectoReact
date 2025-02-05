@@ -72,7 +72,7 @@ function ModificarPublicacion() {
     async function getPublicacion() {
       try {
         let response = await fetch(
-          `${apiUrl}/publicacion/${params.idpublicacion}`
+          `${apiUrl}/publicacion/id/${params.idpublicacion}`
         );
         if (response.ok) {
           let data = await response.json();
