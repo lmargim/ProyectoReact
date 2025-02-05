@@ -43,8 +43,8 @@ Para ejecutar el proyecto localmente, sigue estos pasos:
    
 3. Ejecuta el backend y el frontend en dos terminales diferentes usando el siguiente comando en cada carpeta:
 
-  Para el backend:
+     Para el backend:
       npm run dev
       
-  Para el frontend:
+     Para el frontend:
       npm run dev
