@@ -1,0 +1,37 @@
+POST http://localhost:3000/api/publicacion
+Content-Type: application/json
+
+{
+    "titulo": "El futuro con la Inteligencia Artificial",
+    "texto": "La inteligencia artificial (IA) está transformando el mundo a un ritmo sin precedentes.\nDesde asistentes virtuales hasta sistemas de conducción autónoma, su impacto se extiende a casi todos los aspectos de la vida.\nPero, ¿cómo será el futuro con la IA?\n\nEn el ámbito laboral, la IA automatizará tareas repetitivas y optimizará la toma de decisiones, permitiendo a los humanos enfocarse en actividades creativas y estratégicas.\nSin embargo, esto también plantea desafíos, como la necesidad de nuevas habilidades y la adaptación del mercado laboral.\n\nEn la salud, los algoritmos de IA podrán diagnosticar enfermedades con mayor precisión que los médicos, personalizar tratamientos y acelerar la investigación de nuevos medicamentos.\nEsto podría traducirse en una esperanza de vida más larga y una mejor calidad de vida para muchas personas.\n\nEl transporte también cambiará radicalmente.\nLos vehículos autónomos reducirán accidentes y optimizarán el tráfico, mientras que la logística inteligente hará que las entregas sean más rápidas y eficientes.\n\nSin embargo, el avance de la IA también plantea dilemas éticos.\n¿Cómo se regulan los sistemas de IA para evitar sesgos y decisiones injustas?\n¿Hasta qué punto debería la IA reemplazar a los humanos en ciertos trabajos?\n\nA pesar de estos desafíos, el futuro con la IA promete ser emocionante.\nSi se usa de manera responsable, esta tecnología puede mejorar nuestras vidas y resolver problemas globales.\nLa clave estará en encontrar el equilibrio entre el avance tecnológico y los valores humanos.",
+    "nombre_usuario": "Luis",
+    "tema": "Actualidad"
+}
+
+###
+
+GET http://localhost:3000/api/publicacion
+
+###
+DELETE http://localhost:3000/api/publicacion/4
+
+###
+
+GET http://localhost:3000/api/publicacion/1
+
+###
+
+PUT http://localhost:3000/api/publicacion/6
+Content-Type: application/json
+
+{
+    "id_publicacion": 6,
+    "titulo": "Prueba",
+    "texto": "Prueba",
+    "nombre_usuario": "Luis",
+    "tema": "Actualidad"
+}
+
+###
+
+GET http://localhost:3000/api/publicacion/Filosofia

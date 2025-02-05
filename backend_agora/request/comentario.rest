@@ -1,0 +1,31 @@
+POST http://localhost:3000/api/comentario
+Content-Type: application/json
+
+{
+    "texto": "Los programadores van a desaparecer, ya que la IA va a sustituirlos en la mayoría de las empresas dejando pocos puestos",
+    "id_publicacion": 1,
+    "nombre_usuario": "Pepe"
+}
+
+###
+
+GET http://localhost:3000/api/comentario/3
+
+###
+
+DELETE http://localhost:3000/api/comentario/1
+
+###
+
+PUT http://localhost:3000/api/comentario/7
+Content-Type: application/json
+
+{
+    "texto": "anda q noooooo eeee o no",
+    "id_publicacion": 2,
+    "nombre_usuario": "Pepe"
+}
+
+###
+
+GET http://localhost:3000/api/comentario/anonimo
