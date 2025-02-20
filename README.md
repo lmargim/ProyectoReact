@@ -12,6 +12,10 @@
 - **MUI (Material-UI)**: Para la interfaz de usuario, proporcionando componentes modernos y estilizados.
 - **MDBootstrap**: Para componentes y estilos adicionales.
 - **React Router**: Para la navegación y manejo de rutas dentro de la aplicación.
+- **RECHART**: Para la generación de gráficas.
+- **jsPDF (https://github.com/parallax/jsPDF)**: Para generar documentos PDF a partir de la interfaz de usuario.
+- **html2canvas (https://html2canvas.hertzen.com/)**: Captura de elementos HTML para su conversión a imágenes.
+- **react-pdf (https://react-pdf.org/)**: Generación de PDFs directamente desde React.
 
 ### Backend
 
