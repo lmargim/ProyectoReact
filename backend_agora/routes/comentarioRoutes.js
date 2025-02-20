@@ -10,6 +10,7 @@ router.get('/usuario/:nombre_usuario', comentarioController.getComentarioByAutor
 router.get('/id/:idcomentario', comentarioController.getComentarioById)
 router.put('/:idcomentario', comentarioController.updateComentario)
 router.delete('/:idcomentario', comentarioController.deleteComentario)
+router.get('/grafica', comentarioController.getGraficaComentario);
 
 
 module.exports = router;

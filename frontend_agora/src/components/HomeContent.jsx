@@ -19,7 +19,7 @@ function HomeContent() {
             style={{
               objectFit: "cover",
               width: "100%",
-              height: "70vh", // Ajusta la altura para limitar el tamaño
+              height: "80vh", // Ajusta la altura para limitar el tamaño
             }}
           />
           <MDBCarouselCaption
@@ -49,7 +49,7 @@ function HomeContent() {
             style={{
               objectFit: "cover",
               width: "100%",
-              height: "70vh", // Ajusta la altura para limitar el tamaño
+              height: "80vh", // Ajusta la altura para limitar el tamaño
             }}
           />
           <MDBCarouselCaption
@@ -82,7 +82,7 @@ function HomeContent() {
             style={{
               objectFit: "cover",
               width: "100%",
-              height: "70vh", // Ajusta la altura para limitar el tamaño
+              height: "80vh", // Ajusta la altura para limitar el tamaño
             }}
           />
           <MDBCarouselCaption

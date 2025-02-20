@@ -7,13 +7,13 @@ Content-Type: application/json
     "nombre_usuario": "Pepe"
 }
 
+###npm
+
+GET http://localhost:3000/api/comentario/id/8
+
 ###
 
-GET http://localhost:3000/api/comentario/3
-
-###
-
-DELETE http://localhost:3000/api/comentario/1
+DELETE http://localhost:3000/api/comentario/21
 
 ###
 
@@ -29,3 +29,11 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3000/api/comentario/anonimo
+
+###
+
+GET http://localhost:3000/api/comentario/grafica
+
+###
+
+GET http://localhost:3000/api/comentario

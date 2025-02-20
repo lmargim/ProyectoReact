@@ -23,6 +23,7 @@ import BuscarPublicacionPorId from './components/BuscarPublicacionPorId';
 import BuscarComentarioPorId from './components/BuscarComentarioPorId';
 import BuscarPublicacionPorTema from './components/BuscarPublicacionPorTema';
 import BuscarComentarioPorAutor from './components/BuscarComentarioPorAutor';
+import GraficoComentarios from './components/GraficoComentarios';
 
 
 let router = createBrowserRouter([
@@ -76,6 +77,10 @@ let router = createBrowserRouter([
       {
         path: "/buscarcomentarioporautor",
         element: <BuscarComentarioPorAutor />,
+      },
+      {
+        path: "/graficacomentarios",
+        element: <GraficoComentarios />,
       },
     ],
   },

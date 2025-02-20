@@ -1,4 +1,6 @@
-require("dotenv").config();
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV || 'development'}`,
+});
 
 module.exports = {
   port: process.env.PORT || 3000,
@@ -11,3 +13,5 @@ module.exports = {
   },
   secretKey: process.env.SECRET_KEY || "default_secret",
 };
+
+console.log("HOST", process.env.HOST);

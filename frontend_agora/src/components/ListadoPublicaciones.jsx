@@ -63,6 +63,7 @@ function ListadoPublicaciones() {
       <Box
         sx={{
           width: "100%",
+          minHeight: "80vh",
           padding: 2,
           display: "flex",
           flexDirection: "column",

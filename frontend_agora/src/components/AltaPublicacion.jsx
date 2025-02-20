@@ -132,6 +132,7 @@ function FrmAltaPublicacion() {
         sx={{
           padding: 2,
           backgroundColor: "rgba(255, 239, 170, 0.1)",
+          minHeight: "80vh",
         }}
       >
         <Typography variant="h4" align="center" sx={{ m: 2 }}>

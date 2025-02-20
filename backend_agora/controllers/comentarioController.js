@@ -199,7 +199,14 @@ class ComentarioController {
     try {
       let condicion = {};
 
-      if (nombre_usuario === "anonimo" || nombre_usuario === "Anónimo" || nombre_usuario === "anónimo" || nombre_usuario === "ANONIMO" || nombre_usuario === "ANÓNIMO" || nombre_usuario === "Anonimo") {
+      if (
+        nombre_usuario === "anonimo" ||
+        nombre_usuario === "Anónimo" ||
+        nombre_usuario === "anónimo" ||
+        nombre_usuario === "ANONIMO" ||
+        nombre_usuario === "ANÓNIMO" ||
+        nombre_usuario === "Anonimo"
+      ) {
         condicion = { nombre_usuario: "" };
       } else {
         condicion = { nombre_usuario };
@@ -221,6 +228,37 @@ class ComentarioController {
           error(
             null,
             `Error al recuperar los comentarios del autor ${nombre_usuario}: ${err.message}`
+          )
+        );
+    }
+  }
+
+  // GRAFICA COMENTARIO
+  async getGraficaComentario(req, res) {
+    try {
+      const resultados = await Comentario.findAll({
+        attributes: [
+          "nombre_usuario",
+          [
+            sequelize.fn("COUNT", sequelize.col("id_comentario")),
+            "numComentarios",
+          ],
+        ],
+        group: ["nombre_usuario"],
+        order: [[sequelize.literal("numComentarios"), "DESC"]],
+      });
+
+      return res.json(exito(resultados, "Datos para gráfica recuperados"));
+    } catch (err) {
+      logMensaje(
+        "Error al recuperar los datos de los comentarios por usuarios" + err
+      );
+      res
+        .status(500)
+        .json(
+          error(
+            null,
+            `Error al recuperar los datos de los comentarios: ${err.message}`
           )
         );
     }

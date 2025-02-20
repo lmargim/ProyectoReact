@@ -128,7 +128,7 @@ function ModificarComentario() {
         sx={{
           padding: 2,
           backgroundColor: "rgba(255, 239, 170, 0.1)",
-          height: "70vh",
+          minHeight: "80vh",
         }}
       >
         <Typography variant="h4" align="center" sx={{ m: 2 }}>

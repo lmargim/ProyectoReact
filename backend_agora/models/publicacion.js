@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'PUBLICACION',
+    tableName: 'publicacion',
     timestamps: false,
     indexes: [
       {

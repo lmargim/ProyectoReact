@@ -72,7 +72,6 @@ function Menu() {
                     >
                       <MDBDropdownItem link>Buscar por tema</MDBDropdownItem>
                     </Link>
-                    
                   </MDBDropdownMenu>
                 </MDBDropdown>
               </MDBNavbarItem>
@@ -100,9 +99,10 @@ function Menu() {
                       to="/buscarcomentarioporautor"
                       style={{ color: "#4f4f4f" }}
                     >
-                      <MDBDropdownItem link>
-                        Buscar por autor
-                      </MDBDropdownItem>
+                      <MDBDropdownItem link>Buscar por autor</MDBDropdownItem>
+                    </Link>
+                    <Link to="/graficacomentarios" style={{ color: "#4f4f4f" }}>
+                      <MDBDropdownItem link>Gráfica de comentarios</MDBDropdownItem>
                     </Link>
                   </MDBDropdownMenu>
                 </MDBDropdown>

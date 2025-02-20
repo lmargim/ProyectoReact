@@ -1,15 +1,15 @@
+import SearchIcon from "@mui/icons-material/Search";
 import {
   Box,
-  Typography,
-  Stack,
-  TextField,
   Button,
   Modal,
+  Stack,
+  TextField,
+  Typography,
 } from "@mui/material";
-import { useState, useEffect } from "react";
-import SearchIcon from "@mui/icons-material/Search";
-import AlertModal from "./AlertModal";
+import { useEffect, useState } from "react";
 import { apiUrl } from "../config";
+import AlertModal from "./AlertModal";
 
 function BuscarPublicacionPorId() {
   const [datos, setDatos] = useState({ id: "" });
@@ -83,7 +83,7 @@ function BuscarPublicacionPorId() {
         sx={{
           padding: 2,
           backgroundColor: "rgba(255, 239, 170, 0.1)",
-          height: "70vh",
+          minHeight: "80vh",
         }}
       >
         <Typography variant="h4" align="center" sx={{ m: 2 }}>

@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'PUBLICACION',
+        model: 'publicacion',
         key: 'id_publicacion'
       }
     },
@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'COMENTARIO',
+    tableName: 'comentario',
     timestamps: false,
     indexes: [
       {
