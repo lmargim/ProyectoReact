@@ -26,7 +26,7 @@ const app = express();
         "https://agora-production-ef4f.up.railway.app", // Para producción
       ],
     })
-  );g
+  );
 // }
 // Configurar rutas de la API Rest
 app.use("/api/publicacion", publicacionRoutes);
