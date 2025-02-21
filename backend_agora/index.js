@@ -17,23 +17,25 @@ const comentarioRoutes = require("./routes/comentarioRoutes");
 const app = express();
 // const port = process.env.PORT || 3000;
 
-// Configurar middleware para analizar JSON en las solicitudes
-app.use(express.json());
-
 // Configurar CORS para admitir solicitudes desde http://localhost:5173
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://agora-production-ef4f.up.railway.app"
-    ],
-    credentials: true,
-  })
-);
-
+// if (process.env.NODE_ENV === "development") {
+  app.use(
+    cors({
+      origin: [
+        "http://localhost:5173", // Para desarrollo
+        "https://agora-production-ef4f.up.railway.app", // Para producción
+      ],
+    })
+  );g
+// }
 // Configurar rutas de la API Rest
 app.use("/api/publicacion", publicacionRoutes);
 app.use("/api/comentario", comentarioRoutes);
+
+
+// Configurar middleware para analizar JSON en las solicitudes
+app.use(express.json());
+
 
 // Verificar que las rutas se están registrando
 console.log("Rutas activas:");
