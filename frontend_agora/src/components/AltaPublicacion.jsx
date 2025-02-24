@@ -1,31 +1,22 @@
-import { Button, ButtonText } from "@/components/ui/button";
 import {
-  FormControl,
-  FormControlError,
-  FormControlErrorText,
-  FormControlErrorIcon,
-  FormControlLabel,
-  FormControlLabelText,
-} from "@/components/ui/form-control";
-import { Input, InputField } from "@/components/ui/input";
-import { VStack } from "@/components/ui/vstack";
-import { AlertCircleIcon } from "@/components/ui/icon";
-import React, { useState } from "react";
-import {
+  Typography,
+  TextField,
+  Stack,
+  Box,
+  Button,
   Select,
-  SelectTrigger,
-  SelectInput,
-  SelectIcon,
-  SelectPortal,
-  SelectBackdrop,
-  SelectContent,
-  SelectDragIndicator,
-  SelectDragIndicatorWrapper,
-  SelectItem,
-} from "@/components/ui/select";
-import { ChevronDownIcon } from "@/components/ui/icon"; // Asegúrate de tener esta librería instalada
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
+import Grid from "@mui/material/Grid2";
+import { useState } from "react";
+import AddIcon from "@mui/icons-material/Add";
+import AlertModal from "./AlertModal";
+import { apiUrl } from "../config";
+import { useNavigate } from "react-router";
 
-function AltaScreen() {
+function FrmAltaPublicacion() {
   const temas = [
     "Actualidad",
     "Tecnología",
@@ -48,8 +39,7 @@ function AltaScreen() {
     "Relaciones",
     "Mascotas",
   ];
-
-  const [isInvalid, setIsInvalid] = useState(false);
+  const navigate = useNavigate();
   const [datos, setDatos] = useState({
     titulo: "",
     texto: "",
@@ -57,165 +47,208 @@ function AltaScreen() {
     tema: "",
   });
 
-  const handleSubmit = () => {
-    // Validar que ningún campo esté vacío
-    if (!datos.titulo || !datos.texto || !datos.nombre_usuario || !datos.tema) {
-      setIsInvalid(true); // Mostrar errores si algún campo está vacío
-      return;
-    }
+  const [validacion, setValidacion] = useState({
+    titulo: false,
+    texto: false,
+    nombre_usuario: false,
+    tema: false,
+  });
 
-    // Si todo está bien, enviar los datos
-    console.log("Datos enviados:", datos);
-    setIsInvalid(false); // Ocultar errores
-  };
+  const [openModalAlert, setOpenModalAlert] = useState(false);
+  const handleOpenModalAlert = () => setOpenModalAlert(true);
+  const handleCloseModalAlert = () => setOpenModalAlert(false);
+  const [msgModalAlert, setMsgModalAlert] = useState("");
 
-  const handleChange = (field, value) => {
+  const handleChange = (e) => {
     setDatos({
       ...datos,
-      [field]: value,
+      [e.target.name]: e.target.value,
     });
   };
 
+  const validarDatos = () => {
+    let errores = {};
+    let mensaje = "";
+
+    if (!datos.titulo || !datos.texto || !datos.tema) {
+      mensaje = "Todos los campos son obligatorios (excepto autor)";
+    } else if (datos.titulo.length > 150) {
+      mensaje = "El título no puede superar los 150 caracteres";
+      errores.titulo = true;
+    } else if (datos.texto.length > 65000) {
+      mensaje = "El texto no puede superar los 65000 caracteres";
+      errores.texto = true;
+    } else if (datos.tema.length > 20) {
+      mensaje = "El tema no puede superar los 20 caracteres";
+      errores.tema = true;
+    } else if (datos.nombre_usuario && datos.nombre_usuario.length > 15) {
+      mensaje = "El autor no puede superar los 15 caracteres";
+      errores.nombre_usuario = true;
+    }
+
+    if (mensaje) {
+      setMsgModalAlert(mensaje);
+      handleOpenModalAlert();
+      setValidacion(errores);
+      return false;
+    }
+
+    setValidacion({});
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+    //e -> formulario
+    e.preventDefault();
+    console.log(datos);
+
+    // Primero validamos campos
+    if (validarDatos()) {
+      console.log("Validado correctamente, mandamos peticion al back");
+      const response = await fetch(apiUrl + "/publicacion", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(datos),
+      });
+      if (response.ok) {
+        const respuesta = await response.json();
+        console.log("Publicacion insertada exitosamente");
+        setMsgModalAlert("Publicación insertada exitosamente");
+        handleOpenModalAlert();
+        if (respuesta.ok) {
+          setTimeout(() => {
+            navigate("/");
+          }, 1500);
+        }
+      }
+    }
+  };
+
   return (
-    <VStack className="w-full max-w-[300px] rounded-md border border-background-200 p-4">
-      {/* Campo: Título */}
-      <FormControl
-        isInvalid={isInvalid && !datos.titulo}
-        size="md"
-        isDisabled={false}
-        isReadOnly={false}
-        isRequired={true}
+    <>
+      <Box
+        sx={{
+          padding: 2,
+          backgroundColor: "rgba(255, 239, 170, 0.1)",
+        }}
       >
-        <FormControlLabel>
-          <FormControlLabelText>Título</FormControlLabelText>
-        </FormControlLabel>
-        <Input className="my-1" size="md">
-          <InputField
-            type="text"
-            placeholder="Título"
-            value={datos.titulo}
-            onChangeText={(value) => handleChange("titulo", value)}
-          />
-        </Input>
-        {isInvalid && !datos.titulo && (
-          <FormControlError>
-            <FormControlErrorIcon as={AlertCircleIcon} />
-            <FormControlErrorText>
-              El título es obligatorio.
-            </FormControlErrorText>
-          </FormControlError>
-        )}
-      </FormControl>
+        <Typography variant="h4" align="center" sx={{ m: 2 }}>
+          Añadir Publicación
+        </Typography>
 
-      {/* Campo: Texto */}
-      <FormControl
-        isInvalid={isInvalid && !datos.texto}
-        size="md"
-        isDisabled={false}
-        isReadOnly={false}
-        isRequired={true}
-      >
-        <FormControlLabel>
-          <FormControlLabelText>Texto</FormControlLabelText>
-        </FormControlLabel>
-        <Input className="my-1" size="md">
-          <InputField
-            type="text"
-            placeholder="Texto"
-            value={datos.texto}
-            onChangeText={(value) => handleChange("texto", value)}
-          />
-        </Input>
-        {isInvalid && !datos.texto && (
-          <FormControlError>
-            <FormControlErrorIcon as={AlertCircleIcon} />
-            <FormControlErrorText>
-              El texto es obligatorio.
-            </FormControlErrorText>
-          </FormControlError>
-        )}
-      </FormControl>
+        <Stack component="form" onSubmit={handleSubmit}>
+          <Grid
+            spacing={2}
+            container
+            sx={{
+              backgroundColor: "rgba(255, 255, 255, 0.92)",
+              borderRadius: "10px",
+              border: "2px solid rgba(210, 186, 47, 0.43)",
+              boxShadow: "4px 4px 12px rgba(0, 0, 0, 0.1)",
+              padding: "20px",
+            }}
+          >
+            {/* Título */}
+            <Grid size={12}>
+              <TextField
+                fullWidth
+                id="outlined-basic"
+                label="Titulo"
+                variant="outlined"
+                name="titulo"
+                value={datos.titulo}
+                onChange={handleChange}
+                error={validacion.titulo}
+                helperText={validacion.titulo && "Máximo 150 caracteres"}
+              />
+            </Grid>
 
-      {/* Campo: Nombre de usuario */}
-      <FormControl
-        isInvalid={isInvalid && !datos.nombre_usuario}
-        size="md"
-        isDisabled={false}
-        isReadOnly={false}
-        isRequired={true}
-      >
-        <FormControlLabel>
-          <FormControlLabelText>Nombre de usuario</FormControlLabelText>
-        </FormControlLabel>
-        <Input className="my-1" size="md">
-          <InputField
-            type="text"
-            placeholder="Nombre de usuario"
-            value={datos.nombre_usuario}
-            onChangeText={(value) => handleChange("nombre_usuario", value)}
-          />
-        </Input>
-        {isInvalid && !datos.nombre_usuario && (
-          <FormControlError>
-            <FormControlErrorIcon as={AlertCircleIcon} />
-            <FormControlErrorText>
-              El nombre de usuario es obligatorio.
-            </FormControlErrorText>
-          </FormControlError>
-        )}
-      </FormControl>
+            {/* Contenido */}
+            <Grid size={12}>
+              <TextField
+                fullWidth
+                id="outlined-basic"
+                label="Contenido"
+                variant="outlined"
+                name="texto"
+                value={datos.texto}
+                onChange={handleChange}
+                multiline
+                rows={12}
+                error={validacion.texto}
+                helperText={validacion.texto && "Texto demasiado largo"}
+              />
+            </Grid>
 
-      {/* Campo: Tema (Select de Gluestack) */}
-      <FormControl
-        isInvalid={isInvalid && !datos.tema}
-        size="md"
-        isDisabled={false}
-        isReadOnly={false}
-        isRequired={true}
-      >
-        <FormControlLabel>
-          <FormControlLabelText>Tema</FormControlLabelText>
-        </FormControlLabel>
-        <Select
-          selectedValue={datos.tema}
-          onValueChange={(value) => handleChange("tema", value)}
-        >
-          <SelectTrigger variant="outline" size="md">
-            <SelectInput placeholder="Selecciona un tema" />
-            <SelectIcon className="mr-3" as={ChevronDownIcon} />
-          </SelectTrigger>
-          <SelectPortal>
-            <SelectBackdrop />
-            <SelectContent>
-              <SelectDragIndicatorWrapper>
-                <SelectDragIndicator />
-              </SelectDragIndicatorWrapper>
-              {temas.map((tema, index) => (
-                <SelectItem
-                  key={index}
-                  label={tema}
-                  value={tema.toLowerCase()} // Convertimos el tema a minúsculas para el valor
-                />
-              ))}
-            </SelectContent>
-          </SelectPortal>
-        </Select>
-        {isInvalid && !datos.tema && (
-          <FormControlError>
-            <FormControlErrorIcon as={AlertCircleIcon} />
-            <FormControlErrorText>
-              El tema es obligatorio.
-            </FormControlErrorText>
-          </FormControlError>
-        )}
-      </FormControl>
+            {/* Nombre de Usuario */}
+            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
+              <TextField
+                fullWidth
+                id="outlined-basic"
+                label="Autor"
+                variant="outlined"
+                name="nombre_usuario"
+                value={datos.nombre_usuario}
+                onChange={handleChange}
+                error={validacion.nombre_usuario}
+                helperText={validacion.nombre_usuario && "Máximo 15 caracteres"}
+              />
+            </Grid>
 
-      {/* Botón de envío */}
-      <Button className="w-fit self-end mt-4" size="sm" onPress={handleSubmit}>
-        <ButtonText>Submit</ButtonText>
-      </Button>
-    </VStack>
+            {/* Tema */}
+            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
+              <FormControl fullWidth>
+                <InputLabel id="tema-label">Tema</InputLabel>
+                <Select
+                  labelId="tema-label"
+                  id="tema"
+                  value={datos.tema}
+                  onChange={handleChange}
+                  name="tema"
+                  label="Tema"
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        maxHeight: 200,
+                      },
+                    },
+                  }}
+                >
+                  {temas.map((tema, index) => (
+                    <MenuItem key={index} value={tema}>
+                      {tema}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+
+            {/* Botón de envío */}
+            <Grid size={12}>
+              <Button
+                fullWidth
+                variant="contained"
+                sx={{
+                  backgroundColor: "rgba(210, 186, 47, 0.1)",
+                  color: "rgb(210, 186, 47)",
+                }}
+                type="submit"
+              >
+                <AddIcon fontSize="large" />
+              </Button>
+            </Grid>
+          </Grid>
+        </Stack>
+      </Box>
+      <AlertModal
+          open={openModalAlert}
+          handleClose={handleCloseModalAlert}
+          message={msgModalAlert}
+        />
+    </>
   );
 }
 
-export default AltaScreen;
+export default FrmAltaPublicacion;

@@ -20,13 +20,13 @@ const app = express();
 // Configurar CORS para admitir solicitudes desde http://localhost:5173
 app.use(cors());
 
-// Configurar rutas de la API Rest
-app.use("/api/publicacion", publicacionRoutes);
-app.use("/api/comentario", comentarioRoutes);
-
 
 // Configurar middleware para analizar JSON en las solicitudes
 app.use(express.json());
+
+// Configurar rutas de la API Rest
+app.use("/api/publicacion", publicacionRoutes);
+app.use("/api/comentario", comentarioRoutes);
 
 
 // Verificar que las rutas se están registrando

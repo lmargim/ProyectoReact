@@ -41,6 +41,8 @@ class PublicacionController {
         throw new Error("El texto no puede estar vacío");
       }
 
+      console.log("Datos antes de insertar en la base de datos:", publicacion);
+      
       // Crear la nueva publicación
       const publicacionCreada = await Publicacion.create(publicacion);
 
@@ -220,37 +222,6 @@ class PublicacionController {
     }
   }
 
-  // GRAFICA COMENTARIO
-  // async getGraficaPublicacion(req, res) {
-  //   try {
-  //     const resultados = await Publicacion.findAll({
-  //       attributes: [
-  //         "nombre_usuario",
-  //         [
-  //           sequelize.fn("COUNT", sequelize.col("id_comentario")),
-  //           "numComentarios",
-  //         ],
-  //       ],
-  //       group: ["nombre_usuario"],
-  //       order: [[sequelize.literal("numComentarios"), "DESC"]],
-  //     });
-
-  //     return resultados;
-  //   } catch (err) {
-  //     logMensaje(
-  //       "Error al recuperar los datos de los comentarios por usuarios",
-  //       error
-  //     );
-  //     res
-  //       .status(500)
-  //       .json(
-  //         error(
-  //           null,
-  //           `Error al recuperar los datos de los comentarios: ${err.message}`
-  //         )
-  //       );
-  //   }
-  // }
 }
 
 module.exports = new PublicacionController();
