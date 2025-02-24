@@ -14,4 +14,4 @@ module.exports = {
   secretKey: process.env.SECRET_KEY || "default_secret",
 };
 
-console.log("HOST", process.env.HOST);
+console.log("HOST", process.env.DB_HOST);
