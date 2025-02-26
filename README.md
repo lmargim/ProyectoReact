@@ -52,3 +52,8 @@ Para ejecutar el proyecto localmente, sigue estos pasos:
       
      Para el frontend:
       npm run dev
+
+## Enlaces
+
+1. [GitHub](https://github.com/lmargim/ProyectoReact)
+2. [Despliegue](agora-production-f57b.up.railway.app)
