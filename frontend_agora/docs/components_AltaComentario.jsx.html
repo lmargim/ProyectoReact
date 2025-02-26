@@ -1,4 +1,32 @@
-import {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/AltaComentario.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/AltaComentario.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
   Box,
   Typography,
   Stack,
@@ -104,7 +132,7 @@ function AltaComentario() {
     } else if (datos.texto.length > 300) {
       mensaje = "El comentario no puede superar los 300 caracteres";
       errores.texto = true;
-    } else if (datos.nombre_usuario && datos.nombre_usuario.length > 15) {
+    } else if (datos.nombre_usuario &amp;&amp; datos.nombre_usuario.length > 15) {
       mensaje = "El autor no puede superar los 15 caracteres";
       errores.nombre_usuario = true;
     }
@@ -155,22 +183,22 @@ function AltaComentario() {
   };
 
   return (
-    <>
+    &lt;>
       {/* Contenedor principal del formulario */}
-      <Box
+      &lt;Box
         sx={{
           padding: 2,
           backgroundColor: "rgba(255, 239, 170, 0.1)",
           minHeight: "80vh",
         }}
       >
-        <Typography variant="h4" align="center" sx={{ m: 2 }}>
+        &lt;Typography variant="h4" align="center" sx={{ m: 2 }}>
           Añadir Comentario
-        </Typography>
+        &lt;/Typography>
 
         {/* Formulario */}
-        <Stack component="form" onSubmit={handleSubmit}>
-          <Grid
+        &lt;Stack component="form" onSubmit={handleSubmit}>
+          &lt;Grid
             spacing={2}
             container
             sx={{
@@ -182,8 +210,8 @@ function AltaComentario() {
             }}
           >
             {/* Campo de comentario */}
-            <Grid size={12}>
-              <TextField
+            &lt;Grid size={12}>
+              &lt;TextField
                 fullWidth
                 id="outlined-basic"
                 label="Comentario"
@@ -194,13 +222,13 @@ function AltaComentario() {
                 multiline
                 rows={4}
                 error={validacion.texto}
-                helperText={validacion.texto && "Máximo 300 carácteres"}
+                helperText={validacion.texto &amp;&amp; "Máximo 300 carácteres"}
               />
-            </Grid>
+            &lt;/Grid>
 
             {/* Campo de autor */}
-            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
-              <TextField
+            &lt;Grid size={{ xs: 12, sm: 6, md: 6 }}>
+              &lt;TextField
                 fullWidth
                 id="outlined-basic"
                 label="Autor"
@@ -209,15 +237,15 @@ function AltaComentario() {
                 value={datos.nombre_usuario}
                 onChange={handleChange}
                 error={validacion.nombre_usuario}
-                helperText={validacion.nombre_usuario && "Máximo 15 carácteres"}
+                helperText={validacion.nombre_usuario &amp;&amp; "Máximo 15 carácteres"}
               />
-            </Grid>
+            &lt;/Grid>
 
             {/* Selector de publicación */}
-            <Grid size={{ xs: 12, sm: 6, md: 6 }}>
-              <FormControl fullWidth>
-                <InputLabel id="publicacion-label">Publicación</InputLabel>
-                <Select
+            &lt;Grid size={{ xs: 12, sm: 6, md: 6 }}>
+              &lt;FormControl fullWidth>
+                &lt;InputLabel id="publicacion-label">Publicación&lt;/InputLabel>
+                &lt;Select
                   labelId="publicacion-label"
                   id="publicacion"
                   value={publicacionSeleccionada}
@@ -233,20 +261,20 @@ function AltaComentario() {
                   }}
                 >
                   {publicaciones.map((publicacion) => (
-                    <MenuItem
+                    &lt;MenuItem
                       key={publicacion.id_publicacion}
                       value={publicacion.id_publicacion}
                     >
                       {publicacion.titulo}
-                    </MenuItem>
+                    &lt;/MenuItem>
                   ))}
-                </Select>
-              </FormControl>
-            </Grid>
+                &lt;/Select>
+              &lt;/FormControl>
+            &lt;/Grid>
 
             {/* Botón de envío */}
-            <Grid size={12}>
-              <Button
+            &lt;Grid size={12}>
+              &lt;Button
                 fullWidth
                 variant="contained"
                 sx={{
@@ -255,21 +283,43 @@ function AltaComentario() {
                 }}
                 type="submit"
               >
-                <AddIcon fontSize="large" />
-              </Button>
-            </Grid>
-          </Grid>
-        </Stack>
-      </Box>
+                &lt;AddIcon fontSize="large" />
+              &lt;/Button>
+            &lt;/Grid>
+          &lt;/Grid>
+        &lt;/Stack>
+      &lt;/Box>
 
       {/* Modal de alerta */}
-      <AlertModal
+      &lt;AlertModal
         open={openModalAlert}
         handleClose={handleCloseModalAlert}
         message={msgModalAlert}
       />
-    </>
+    &lt;/>
   );
 }
 
-export default AltaComentario;
+export default AltaComentario;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AlertModal">AlertModal</a></li><li><a href="global.html#AltaComentario">AltaComentario</a></li><li><a href="global.html#BuscarComentarioPorAutor">BuscarComentarioPorAutor</a></li><li><a href="global.html#BuscarComentarioPorId">BuscarComentarioPorId</a></li><li><a href="global.html#BuscarPublicacionPorId">BuscarPublicacionPorId</a></li><li><a href="global.html#BuscarPublicacionPorTema">BuscarPublicacionPorTema</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#FrmAltaPublicacion">FrmAltaPublicacion</a></li><li><a href="global.html#GraficoComentarios">GraficoComentarios</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#HomeContent">HomeContent</a></li><li><a href="global.html#ListadoComentarios">ListadoComentarios</a></li><li><a href="global.html#ListadoComentariosPDF">ListadoComentariosPDF</a></li><li><a href="global.html#ListadoPublicaciones">ListadoPublicaciones</a></li><li><a href="global.html#Menu">Menu</a></li><li><a href="global.html#ModificarComentario">ModificarComentario</a></li><li><a href="global.html#ModificarPublicacion">ModificarPublicacion</a></li><li><a href="global.html#PaginaError">PaginaError</a></li><li><a href="global.html#generatePDF">generatePDF</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#styles">styles</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Feb 26 2025 11:19:50 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

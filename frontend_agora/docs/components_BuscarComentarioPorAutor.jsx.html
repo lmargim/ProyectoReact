@@ -1,4 +1,32 @@
-import { Box, Typography, Stack, TextField, Button } from "@mui/material";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/BuscarComentarioPorAutor.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/BuscarComentarioPorAutor.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Box, Typography, Stack, TextField, Button } from "@mui/material";
 import { apiUrl } from "../config";
 import { useState, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
@@ -128,21 +156,21 @@ function BuscarComentarioPorAutor() {
   }, [buscarComentarios]);
 
   return (
-    <>
+    &lt;>
       {/* Contenedor principal del formulario y la tabla */}
-      <Box
+      &lt;Box
         sx={{
           padding: 2,
           backgroundColor: "rgba(255, 239, 170, 0.1)",
           minHeight: "80vh",
         }}
       >
-        <Typography variant="h4" align="center" sx={{ m: 2 }}>
+        &lt;Typography variant="h4" align="center" sx={{ m: 2 }}>
           Buscar comentario por autor
-        </Typography>
+        &lt;/Typography>
 
         {/* Formulario de búsqueda */}
-        <Stack
+        &lt;Stack
           component="form"
           onSubmit={handleSubmit}
           sx={{
@@ -155,7 +183,7 @@ function BuscarComentarioPorAutor() {
             margin: "auto",
           }}
         >
-          <TextField
+          &lt;TextField
             fullWidth
             id="outlined-basic"
             label="Autor"
@@ -164,12 +192,12 @@ function BuscarComentarioPorAutor() {
             value={nombre_usuario}
             onChange={handleChange}
             error={validacion.nombre_usuario}
-            helperText={validacion.nombre_usuario && "Máximo 15 caracteres"}
+            helperText={validacion.nombre_usuario &amp;&amp; "Máximo 15 caracteres"}
           />
-          <Typography variant="caption" gutterBottom sx={{ display: "block" }}>
+          &lt;Typography variant="caption" gutterBottom sx={{ display: "block" }}>
             Buscar Anónimo para mostrar comentarios sin autores
-          </Typography>
-          <Button
+          &lt;/Typography>
+          &lt;Button
             fullWidth
             variant="contained"
             sx={{
@@ -179,13 +207,13 @@ function BuscarComentarioPorAutor() {
             }}
             type="submit"
           >
-            <SearchIcon fontSize="large" />
-          </Button>
-        </Stack>
+            &lt;SearchIcon fontSize="large" />
+          &lt;/Button>
+        &lt;/Stack>
 
         {/* Tabla de comentarios encontrados */}
-        {datos.length > 0 && (
-          <TableContainer
+        {datos.length > 0 &amp;&amp; (
+          &lt;TableContainer
             component={Paper}
             sx={{
               mt: 4,
@@ -195,49 +223,71 @@ function BuscarComentarioPorAutor() {
               border: "1px solid #d4af37",
             }}
           >
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell align="right">ID Comentario</TableCell>
-                  <TableCell>Texto</TableCell>
-                  <TableCell align="right">Fecha Creación</TableCell>
-                  <TableCell align="right">ID Publicación</TableCell>
-                  <TableCell>Autor</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
+            &lt;Table sx={{ minWidth: 650 }} aria-label="simple table">
+              &lt;TableHead>
+                &lt;TableRow>
+                  &lt;TableCell align="right">ID Comentario&lt;/TableCell>
+                  &lt;TableCell>Texto&lt;/TableCell>
+                  &lt;TableCell align="right">Fecha Creación&lt;/TableCell>
+                  &lt;TableCell align="right">ID Publicación&lt;/TableCell>
+                  &lt;TableCell>Autor&lt;/TableCell>
+                &lt;/TableRow>
+              &lt;/TableHead>
+              &lt;TableBody>
                 {datos.map((row) => (
-                  <TableRow
+                  &lt;TableRow
                     key={row.id_publicacion}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    sx={{ "&amp;:last-child td, &amp;:last-child th": { border: 0 } }}
                   >
-                    <TableCell align="right" component="th" scope="row">
+                    &lt;TableCell align="right" component="th" scope="row">
                       {row.id_comentario}
-                    </TableCell>
-                    <TableCell>{row.texto}</TableCell>
-                    <TableCell align="right">
+                    &lt;/TableCell>
+                    &lt;TableCell>{row.texto}&lt;/TableCell>
+                    &lt;TableCell align="right">
                       {new Date(row.fecha_creacion).toLocaleString()}
-                    </TableCell>
-                    <TableCell align="right">{row.id_publicacion}</TableCell>
-                    <TableCell>
+                    &lt;/TableCell>
+                    &lt;TableCell align="right">{row.id_publicacion}&lt;/TableCell>
+                    &lt;TableCell>
                       {row.nombre_usuario ? row.nombre_usuario : "Anónimo"}
-                    </TableCell>
-                  </TableRow>
+                    &lt;/TableCell>
+                  &lt;/TableRow>
                 ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+              &lt;/TableBody>
+            &lt;/Table>
+          &lt;/TableContainer>
         )}
-      </Box>
+      &lt;/Box>
 
       {/* Modal de alerta */}
-      <AlertModal
+      &lt;AlertModal
         open={openModalAlert}
         handleClose={handleCloseModalAlert}
         message={msgModalAlert}
       />
-    </>
+    &lt;/>
   );
 }
 
-export default BuscarComentarioPorAutor;
+export default BuscarComentarioPorAutor;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AlertModal">AlertModal</a></li><li><a href="global.html#AltaComentario">AltaComentario</a></li><li><a href="global.html#BuscarComentarioPorAutor">BuscarComentarioPorAutor</a></li><li><a href="global.html#BuscarComentarioPorId">BuscarComentarioPorId</a></li><li><a href="global.html#BuscarPublicacionPorId">BuscarPublicacionPorId</a></li><li><a href="global.html#BuscarPublicacionPorTema">BuscarPublicacionPorTema</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#FrmAltaPublicacion">FrmAltaPublicacion</a></li><li><a href="global.html#GraficoComentarios">GraficoComentarios</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#HomeContent">HomeContent</a></li><li><a href="global.html#ListadoComentarios">ListadoComentarios</a></li><li><a href="global.html#ListadoComentariosPDF">ListadoComentariosPDF</a></li><li><a href="global.html#ListadoPublicaciones">ListadoPublicaciones</a></li><li><a href="global.html#Menu">Menu</a></li><li><a href="global.html#ModificarComentario">ModificarComentario</a></li><li><a href="global.html#ModificarPublicacion">ModificarPublicacion</a></li><li><a href="global.html#PaginaError">PaginaError</a></li><li><a href="global.html#generatePDF">generatePDF</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#styles">styles</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Feb 26 2025 11:19:50 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

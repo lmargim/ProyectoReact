@@ -14,6 +14,10 @@ import {
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
+/**
+ * Componente que muestra un gráfico de barras con los comentarios por usuario.
+ * @returns {JSX.Element} El componente GraficoComentarios.
+ */
 function GraficoComentarios() {
   const [datos, setDatos] = useState([]);
 
@@ -42,7 +46,9 @@ function GraficoComentarios() {
     getDatosGraficaComentarios();
   }, []);
 
-  // Función para exportar la gráfica a PDF
+  /**
+   * Función para exportar la gráfica a PDF.
+   */
   const exportToPDF = () => {
     const input = document.getElementById("grafica-comentarios");
     html2canvas(input).then((canvas) => {

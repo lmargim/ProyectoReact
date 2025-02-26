@@ -7,6 +7,11 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 
+/**
+ * Componente que representa el pie de página del sitio web.
+ * Incluye información sobre el blog y enlaces a redes sociales.
+ * @returns {JSX.Element} El componente Footer.
+ */
 function Footer() {
   return (
     <>

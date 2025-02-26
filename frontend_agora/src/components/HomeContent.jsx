@@ -7,7 +7,11 @@ import {
 // Imagenes para el carousel
 import img1 from "../assets/img1_agora_grecia.jpg";
 
-// Contenido del home page
+/**
+ * Componente que representa el contenido del Home Page.
+ * Incluye un carrusel con imágenes y descripciones.
+ * @returns {JSX.Element} El componente HomeContent.
+ */
 function HomeContent() {
   return (
     <>

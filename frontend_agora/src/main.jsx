@@ -25,70 +25,74 @@ import BuscarPublicacionPorTema from './components/BuscarPublicacionPorTema';
 import BuscarComentarioPorAutor from './components/BuscarComentarioPorAutor';
 import GraficoComentarios from './components/GraficoComentarios';
 
-
+/**
+ * Configuración de rutas para la aplicación utilizando React Router.
+ * Define las rutas principales y sus componentes asociados.
+ */
 let router = createBrowserRouter([
-  // El elemento <Home/> se renderiza en la raíz de la aplicación
   {
     path: "/",
-    element: <Home />,
-    errorElement : <PaginaError />,
+    element: <Home />, // Componente principal
+    errorElement: <PaginaError />, // Página de error en caso de rutas no encontradas
     children: [
-      // Los hijos se renderizan en el elemento <outlet/> del padre
       {
         path: "/",
-        element: <HomeContent />,
+        element: <HomeContent />, // Contenido principal de la página de inicio
       },
       {
         path: "/altapublicacion",
-        element:<AltaPublicacion/>
+        element:<AltaPublicacion/> // Formulario para agregar una nueva publicación
       },
       {
         path: "/listadopublicaciones",
-        element:<ListadoPublicaciones/>
+        element:<ListadoPublicaciones/> // Lista de publicaciones existentes
       },
       {
         path: "/altacomentario",
-        element:<AltaComentario/>
+        element:<AltaComentario/> // Formulario para agregar un nuevo comentario
       },
       {
         path: "/listadocomentarios",
-        element:<ListadoComentarios/>
+        element:<ListadoComentarios/> // Lista de comentarios existentes
       },
       {
         path: "/modificarcomentario/:idcomentario",
-        element:<ModificarComentario/>
+        element:<ModificarComentario/> // Edición de un comentario por su ID
       },
       {
         path: "/modificarpublicacion/:idpublicacion",
-        element:<ModificarPublicacion/>
+        element:<ModificarPublicacion/> // Edición de una publicación por su ID
       },
       {
         path: "/buscarpublicacionporid",
-        element:<BuscarPublicacionPorId/>
+        element:<BuscarPublicacionPorId/> // Búsqueda de publicación por ID
       },
       {
         path: "/buscarcomentarioporid",
-        element:<BuscarComentarioPorId/>
+        element:<BuscarComentarioPorId/> // Búsqueda de comentario por ID
       },
       {
         path: "/buscarpublicacionportema",
-        element: <BuscarPublicacionPorTema />,
+        element: <BuscarPublicacionPorTema />, // Búsqueda de publicaciones por tema
       },
       {
         path: "/buscarcomentarioporautor",
-        element: <BuscarComentarioPorAutor />,
+        element: <BuscarComentarioPorAutor />, // Búsqueda de comentarios por autor
       },
       {
         path: "/graficacomentarios",
-        element: <GraficoComentarios />,
+        element: <GraficoComentarios />, // Visualización de estadísticas de comentarios
       },
     ],
   },
 ]);
 
+/**
+ * Renderiza la aplicación React en el elemento con ID "root".
+ * Envuelve la aplicación en StrictMode para detectar problemas potenciales.
+ */
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />
   </StrictMode>
 );
-
